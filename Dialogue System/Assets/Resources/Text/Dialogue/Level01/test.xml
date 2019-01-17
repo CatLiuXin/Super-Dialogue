@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Dialogs>
+  <Dialog>
+    <name>Box</name>
+    <info>你很危险啊，小火鸡！</info>
+  </Dialog>
+  <Dialog>
+    <name>Player</name>
+    <info>怎么样？怕不怕？</info>
+  </Dialog>
+</Dialogs>
