@@ -199,9 +199,12 @@ public class DialogueDesignPanel : EditorWindow
             GUI.enabled = false;
             GUILayout.TextArea(info.Info, GUILayout.MaxWidth(200), GUILayout.MaxHeight(50));
             GUI.enabled = true;
+
             EditorStyles.textField.wordWrap = true;
             tmpStr = EditorGUILayout.TextArea(tmpStr,GUILayout.MaxWidth(200), GUILayout.MaxHeight(50));
-            if(GUILayout.Button("采用此对话",GUILayout.MaxWidth(200)))
+            EditorStyles.textField.wordWrap = false;
+
+            if (GUILayout.Button("采用此对话",GUILayout.MaxWidth(200)))
             {
                 info.Info = tmpStr;
             }

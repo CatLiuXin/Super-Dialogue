@@ -2,7 +2,11 @@
 <Dialogues>
   <Dialogue>
     <name>Player</name>
-    <info>这不开心那不开心，哪儿能让你开心到呀。你这无敌肥猪。</info>
+    <info>我不开心！</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Box</name>
+    <info></info>
   </Dialogue>
   <Dialogue>
     <name>Box</name>
