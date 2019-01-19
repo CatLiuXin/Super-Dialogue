@@ -48,7 +48,7 @@ public class EventDialogueUI : MonoBehaviour, IDialogueUI
         }
 
         NPC_TYPE type = types.Dequeue();
-        EventPic.sprite = NPCImagesMgr.Instance.GetImage(type);
+        EventPic.sprite = NPCImagesMgr.GetImage(type);
         string sentence = sentences.Dequeue();
         nameText.text = type.ToString();
 

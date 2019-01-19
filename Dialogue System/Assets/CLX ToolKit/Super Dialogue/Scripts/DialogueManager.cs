@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using System.Xml;
+using System.Text;
+using System.Xml.Linq;
+using System.Linq;
 
 /// <summary>
 /// 对白管理
@@ -21,7 +24,11 @@ public class DialogueManager : MonoBehaviour {
     /// <summary>
     /// 对白的信息文件所在的文件夹的路径
     /// </summary>
-    private static string DialoguePath = "Text/Dialogue/";
+    public static string DialoguePath {
+        get {
+            return "Text/Dialogue/";
+        }
+    }
 
     private IDialogueUI dialogueUI;
 
@@ -44,31 +51,92 @@ public class DialogueManager : MonoBehaviour {
     
     public static List<DialogueInfo> GetDialogueInfos(string name)
     {
-        TextAsset text = Resources.Load<TextAsset>(DialoguePath + name);
-        return ReadSingleXml(text);
+        return ReadSingleXml(name);
     }
 
-    private static List<DialogueInfo> ReadSingleXml(TextAsset mText)
+    /// <summary>
+    /// 读取XML文件转换成List<DialogueInfo>
+    /// </summary>
+    /// <param name="path"></param>
+    /// <returns></returns>
+    private static List<DialogueInfo> ReadSingleXml(string path)
     {
         List<DialogueInfo> dialogues = new List<DialogueInfo>();
-        XmlDocument mDocuemnt = new XmlDocument();
+        XDocument mDocuemnt;
+        XElement mElement;
+
+        List<string> infos;
+        List<string> names;
+
         //加载Xml文本
-        mDocuemnt.LoadXml(mText.text);
-        //获取根节点
-        XmlElement mElement = mDocuemnt.DocumentElement;
-        //读取节点值
-        XmlNodeList names = mElement.SelectNodes("/Dialogs/Dialog/name");
-        XmlNodeList infos = mElement.SelectNodes("/Dialogs/Dialog/info");
-        
-        for(int i=0;i<names.Count;i++)
+        try
+        {
+            mDocuemnt = XDocument.Load(path);
+            //获取根节点
+            mElement = mDocuemnt.Root;
+            //读取节点值
+            names = (from seg in mElement.Descendants("name") select (string)seg).ToList();
+            infos = (from seg in mElement.Descendants("info") select (string)seg).ToList();
+        }
+        catch
+        {
+            mDocuemnt = CreateXMLFile(path);
+            mElement = mDocuemnt.Root;
+            names = (from seg in mElement.Descendants("name") select (string)seg).ToList();
+            infos = (from seg in mElement.Descendants("info") select (string)seg).ToList();
+        }
+
+        for (int i = 0; i < names.Count; i++)
         {
             NPC_TYPE type;
-            type = NPCEnumMgr.GetNPCString(names[i].InnerText);
-            dialogues.Add(new DialogueInfo(type, infos[i].InnerText));
+            type = NPCEnumMgr.GetNPCString(names[i]);
+            dialogues.Add(new DialogueInfo(type, infos[i]));
         }
 
         //返回数组
         return dialogues;
+    }
+
+    /// <summary>
+    /// 保存创建XML文件
+    /// </summary>
+    /// <param name="path"></param>
+    /// <param name="infos"></param>
+    /// <returns></returns>
+     public static XDocument CreateXMLFile(string path, List<DialogueInfo> infos = null)
+    {
+        XDocument doc;
+        if (infos == null)
+        {
+            doc = new XDocument(new XElement("Dialogues",
+                                               new XElement("Dialogue",
+                                                   new XElement("name", "Box"),
+                                                   new XElement("info", ""))));
+            doc.Save(path);
+            print("Create in:"+path);
+            return doc;
+        }
+        doc = new XDocument(new XElement("Dialogues"));
+        XElement element = doc.Root;
+        foreach(var info in infos)
+        {
+            element.Add(InfoToElement(info));
+        }
+        print(path);
+        doc.Save(path);
+        return doc;
+    }
+
+    /// <summary>
+    /// 用DialogueInfo生成XML结点
+    /// </summary>
+    /// <param name="info"></param>
+    /// <returns></returns>
+    private static XElement InfoToElement(DialogueInfo info)
+    {
+        return new XElement("Dialogue",
+            new XElement("name", info.npcType.ToString()),
+            new XElement("info", info.Info));
     }
 
 }

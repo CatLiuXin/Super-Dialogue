@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dialogues>
+  <Dialogue>
+    <name>Box</name>
+    <info>aaa</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Box</name>
+    <info></info>
+  </Dialogue>
+</Dialogues>

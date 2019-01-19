@@ -13,15 +13,9 @@ public class NPCImagesMgr : MonoBehaviour
             return _instance;
         }
     }
-    private Dictionary<NPC_TYPE, Sprite> npcImages;
+    private static Dictionary<NPC_TYPE, Sprite> npcImages = new Dictionary<NPC_TYPE, Sprite>();
 
-    private void Start()
-    {
-        npcImages = new Dictionary<NPC_TYPE, Sprite>();
-        _instance = this;
-    }
-
-    public Sprite GetImage(NPC_TYPE type)
+    public static Sprite GetImage(NPC_TYPE type)
     {
         Sprite image;
         if(npcImages.TryGetValue(type,out image) == false)
@@ -31,7 +25,7 @@ public class NPCImagesMgr : MonoBehaviour
         return image;
     }
 
-    private Sprite LoadImage(NPC_TYPE type)
+    private static Sprite LoadImage(NPC_TYPE type)
     {
         Sprite image = Resources.Load<Sprite>(imagesPath + type );
         if(image == null)
@@ -41,4 +35,6 @@ public class NPCImagesMgr : MonoBehaviour
         }
         return image;
     }
+
 }
+

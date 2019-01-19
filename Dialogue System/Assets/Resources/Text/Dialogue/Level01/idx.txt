@@ -1,0 +1,11 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dialogues>
+  <Dialogue>
+    <name>Player</name>
+    <info>这不开心那不开心，哪儿能让你开心到呀。你这无敌肥猪。</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Box</name>
+    <info>bbbb</info>
+  </Dialogue>
+</Dialogues>
