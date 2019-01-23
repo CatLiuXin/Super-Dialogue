@@ -2,16 +2,18 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
-/// <summary>
-/// 面板的展示逻辑抽象接口
-/// </summary>
-public interface IDialogueUI
+namespace CLX
 {
     /// <summary>
-    /// 将该人的对话展示出来
+    /// 面板的展示逻辑抽象接口
     /// </summary>
-    /// <param name="dialogue"></param>
-    void SetDialogue(Dialogue dialogue);
-    void ShowNextSentence();
+    public interface IDialogueUI
+    {
+        /// <summary>
+        /// 将该人的对话展示出来
+        /// </summary>
+        /// <param name="dialogue"></param>
+        void SetDialogue(Dialogue dialogue);
+        void ShowNextSentence();
+    }
 }
