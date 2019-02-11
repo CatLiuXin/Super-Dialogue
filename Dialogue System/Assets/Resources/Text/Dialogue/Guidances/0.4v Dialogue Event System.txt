@@ -1,0 +1,19 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dialogues>
+  <Dialogue>
+    <name>Box</name>
+    <info>请按空格继续！</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Player</name>
+    <info>请按空格继续！</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Box</name>
+    <info>请按空格继续！</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Player</name>
+    <info>请按空格继续！</info>
+  </Dialogue>
+</Dialogues>

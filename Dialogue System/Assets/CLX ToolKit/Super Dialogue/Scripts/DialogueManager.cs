@@ -45,9 +45,9 @@ namespace CLX
             _instance = this;
         }
 
-        public void StartDialogue(Dialogue dialogue)
+        public void StartDialogue(Dialogue dialogue,bool isSpecial = false,SpecialEvent sEvent = null)
         {
-            dialogueUI.SetDialogue(dialogue);
+            dialogueUI.SetDialogue(dialogue,isSpecial,sEvent);
             DisplayNextSentence();
         }
 

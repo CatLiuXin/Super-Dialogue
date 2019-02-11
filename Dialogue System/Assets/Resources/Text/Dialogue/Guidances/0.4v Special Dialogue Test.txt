@@ -1,0 +1,15 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Dialogues>
+  <Dialogue>
+    <name>Box</name>
+    <info>Red 我是红色哒！</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Player</name>
+    <info>Blue 我是蓝色哒！</info>
+  </Dialogue>
+  <Dialogue>
+    <name>Box</name>
+    <info>我假装没有颜色</info>
+  </Dialogue>
+</Dialogues>

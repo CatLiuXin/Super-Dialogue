@@ -13,7 +13,7 @@ namespace CLX
         /// 将该人的对话展示出来
         /// </summary>
         /// <param name="dialogue"></param>
-        void SetDialogue(Dialogue dialogue);
+        void SetDialogue(Dialogue dialogue,bool isSpecial = false, SpecialEvent sEvent = null);
         void ShowNextSentence();
     }
 }
